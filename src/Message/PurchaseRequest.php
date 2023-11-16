@@ -115,7 +115,7 @@ class PurchaseRequest extends AbstractRequest
         $this->validate('currency', 'amount');
 
         return array_merge($this->getCustomData(), [
-            'amount'                 => $this->getAmount(),
+            'amount'                 => intval($this->getAmount()),
             'currency'               => $this->getCurrency(),
             'capture_mode'           => $this->getCaptureMode() ?? self::CAPTURE_MODE_AUTOMATIC,
             'merchant_order_ext_ref' => $this->getMerchantOrderReference() ?? null,
