@@ -106,9 +106,9 @@ class Response extends AbstractResponse implements RedirectResponseInterface
     /**
      * @return bool
      */
-    public function isRedirect() : bool
+    public function isRedirect(): bool
     {
-        return false;
+        return isset($this->data['checkout_url']);
     }
 
     /**
@@ -116,11 +116,14 @@ class Response extends AbstractResponse implements RedirectResponseInterface
      *
      * @return string
      */
-    public function getRedirectUrl() : string
+    public function getRedirectUrl(): string
     {
-        return '';
-    }
+        if (isset($this->data['checkout_url'])) {
+            return $this->data['checkout_url'];
+        }
 
+        return null;
+    }
 
     /**
      * @return mixed|null
